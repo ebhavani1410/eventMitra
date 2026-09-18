@@ -6,10 +6,10 @@ EventMithra is a responsive event-coordination frontend. It takes a customer fro
 
 ```bash
 npm install
-npm run dev
+npm run dev:full
 ```
 
-Copy `.env.example` to `.env` when connecting a backend. `VITE_API_URL` is the single API base URL configuration point.
+`npm run dev:full` starts the API on port 4000 and Vite on port 5173. Copy `.env.example` to `.env`; `VITE_API_URL` is the API base URL configuration point.
 
 ## Demo accounts
 
@@ -39,6 +39,7 @@ Use **Reset demo data** in the role portal to start again.
 - `src/store/useStore.ts` is the centralized Zustand workflow store, persisted to localStorage.
 - `src/types` contains shared domain models.
 - `src/data/seed.ts` contains Hyderabad-focused demo data.
-- `src/services/api.ts` is the API configuration boundary. Replace state mutations with Axios/Socket.IO-backed functions there when the backend exists.
+- `backend/server.js` is the Express API: JWT authentication, role checks, persistent local JSON data, and core workflow endpoints.
+- `src/services/api.ts` is the frontend API boundary.
 
 The mock state is deliberately centralized so all role views see the same requests, inquiries, proposals, payments, messages and notifications after refresh. Backend authorization, payment processing, document verification, invoice downloads and realtime transport must be enforced server-side before production deployment.

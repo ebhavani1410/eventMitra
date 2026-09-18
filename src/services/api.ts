@@ -1,3 +1,7 @@
-/** API boundary: replace mock store calls with axios calls here when a backend is available. */
-export const apiConfig = { baseURL: import.meta.env.VITE_API_URL || "/api" };
-export const mockDelay = <T,>(value: T, ms = 250) => new Promise<T>(resolve => setTimeout(() => resolve(value), ms));
+/** Central API boundary. All real backend requests belong here, never in UI components. */
+export const apiConfig = { baseURL: import.meta.env.VITE_API_URL || "http://localhost:4000/api" };
+type ApiOptions = RequestInit & { token?: string };
+export async function api<T>(path: string, { token, headers, ...options }: ApiOptions = {}): Promise<T> { const response=await fetch(`${apiConfig.baseURL}${path}`,{...options,headers:{"Content-Type":"application/json",...headers,...(token?{Authorization:`Bearer ${token}`}:{})}});const body=await response.json().catch(()=>({}));if(!response.ok)throw new Error(body.message||"Request failed");return body as T; }
+export const authApi={login:(email:string,password:string)=>api<{token:string;user:import("../types").User}>("/auth/login",{method:"POST",body:JSON.stringify({email,password})}),signup:(data:Record<string,string>)=>api<{token:string;user:import("../types").User}>("/auth/signup",{method:"POST",body:JSON.stringify(data)})};
+export const eventApi={list:(token:string)=>api("/events",{token}),create:(token:string,data:unknown)=>api("/events",{token,method:"POST",body:JSON.stringify(data)})};
+export const requestApi={list:(token:string)=>api("/requests",{token}),create:(token:string,eventId:string,managerId:string)=>api(`/events/${eventId}/requests`,{token,method:"POST",body:JSON.stringify({managerId})}),decide:(token:string,id:string,status:string)=>api(`/requests/${id}`,{token,method:"PATCH",body:JSON.stringify({status})})};
