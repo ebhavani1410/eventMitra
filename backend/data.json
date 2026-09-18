@@ -1,0 +1,87 @@
+{
+  "users": [
+    {
+      "id": "customer-1",
+      "name": "Priya Sharma",
+      "email": "customer@eventmithra.com",
+      "phone": "9876543210",
+      "role": "customer",
+      "city": "Hyderabad",
+      "password": "Demo@123",
+      "approved": true
+    },
+    {
+      "id": "manager-1",
+      "name": "Ravi Kumar",
+      "email": "manager@eventmithra.com",
+      "phone": "9876543211",
+      "role": "manager",
+      "city": "Hyderabad",
+      "password": "Demo@123",
+      "approved": true
+    },
+    {
+      "id": "venue-1",
+      "name": "Anita Reddy",
+      "email": "venue@eventmithra.com",
+      "phone": "9876543212",
+      "role": "venue",
+      "city": "Hyderabad",
+      "password": "Demo@123",
+      "approved": true
+    },
+    {
+      "id": "admin-1",
+      "name": "EventMithra Admin",
+      "email": "admin@eventmithra.com",
+      "phone": "9876543213",
+      "role": "admin",
+      "password": "Demo@123",
+      "approved": true
+    }
+  ],
+  "managers": [
+    {
+      "id": "manager-1",
+      "userId": "manager-1",
+      "businessName": "Ravi Events",
+      "location": "Hyderabad",
+      "experience": 8,
+      "rating": 4.8,
+      "services": [
+        "Venue",
+        "Catering",
+        "Decoration",
+        "Photography"
+      ],
+      "startingPrice": 65000
+    }
+  ],
+  "venues": [
+    {
+      "id": "venue-1",
+      "managerId": "venue-1",
+      "name": "Grand Convention Hall",
+      "location": "Hyderabad",
+      "area": "Madhapur",
+      "capacity": 500,
+      "pricePerEvent": 120000,
+      "rating": 4.7,
+      "amenities": [
+        "AC",
+        "Parking",
+        "Catering",
+        "Stage"
+      ]
+    }
+  ],
+  "events": [],
+  "requests": [],
+  "inquiries": [],
+  "proposals": [],
+  "bookings": [],
+  "payments": [],
+  "messages": [],
+  "notifications": [],
+  "reviews": []
+}
